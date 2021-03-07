@@ -1,0 +1,29 @@
+<div class="p-2">
+  <div *ngIf="error$ | async as error">
+    {{error.message}}
+  </div>
+  <div>
+    Storage: {{hasStore}}
+    <div>
+      <div>Pin:</div>
+      <input
+        [(ngModel)]="pin"
+      >
+    </div>
+    <div class="py-1">
+      <button class="btn btn-primary mx-1" (click)="create()">Create</button>
+      <button class="btn btn-primary mx-1" (click)="init()">Init</button>
+      <button class="btn btn-primary mx-1" (click)="clear()">Clear</button>
+    </div>
+  </div>
+  <div class="my-1">
+    <div>
+      <div>Key save:</div>
+      <input [(ngModel)]="key">
+    </div>
+    <div class="py-1">
+      <button class="btn btn-primary mx-1" (click)="saveKey()">Save</button>
+      <button class="btn btn-primary mx-1" (click)="loadKey()">Load</button>
+    </div>
+  </div>
+</div>
