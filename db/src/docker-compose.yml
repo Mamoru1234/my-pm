@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: oleksiygontarpersonal/my-pm:db-0.0.0
+    build: .
+    container_name: db.my.pm
+    environment:
+      POSTGRES_PASSWORD: super_secret_admin
+      APP_USER_PASSWORD: app_secret
+    ports:
+    - 5432:5432
+
+networks:
+  default:
+    external:
+      name: my.pm
