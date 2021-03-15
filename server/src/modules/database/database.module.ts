@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ENTITY_LIST } from './entity';
+import { DAO_LIST } from './dao';
 
 @Module({
   imports: [
@@ -12,12 +14,14 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
         username: configService.get('DB_USERNAME', 'server'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DATABASE_NAME', 'server'),
-        entities: [],
+        entities: ENTITY_LIST,
         autoLoadEntities: false,
         synchronize: false,
       }),
       inject: [ConfigService],
     }),
   ],
+  providers: [...DAO_LIST],
+  exports: [...DAO_LIST],
 })
 export default class DatabaseModule {}
